@@ -238,7 +238,7 @@ resource "aws_launch_template" "nginx" {
   
   vpc_security_group_ids = [aws_security_group.ec2.id]
   
-  user_data = base64encode(templatefile("${path.module}/user_data1.sh", {
+  user_data = base64encode(templatefile("${path.module}/user_data.sh", {
     environment = var.environment
     project_name = var.project_name
   }))
