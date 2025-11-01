@@ -59,7 +59,7 @@ variable "desired_capacity" {
 variable "domain_name" {
   description = "Domain name for SSL certificate"
   type        = string
-  default     = ""
+  default     = "deploywithklenam.com"
   validation {
     condition     = var.domain_name != ""
     error_message = "Domain name must be provided for SSL certificate."
