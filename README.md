@@ -6,7 +6,10 @@
 
 This project automates the deployment of a secure, scalable, and production-ready Nginx web server using Terraform. It provisions the complete cloud infrastructure while adhering to industry-standard DevOps methodologies and security best practices.
 
+
+
 ## 📋 Table of Contents
+
 1. [Overview](#overview)
 2. [Architecture](#architecture)
 3. [Infrastructure Components](#infrastructure-components)
@@ -20,10 +23,10 @@ This project automates the deployment of a secure, scalable, and production-read
 11. [Future Improvements](#future-improvements)
 12. [License](#license)
 
-
 ## 🧭 Overview
 
-This repository provisions a **secure and scalable NGINX web server** infrastructure on AWS using Terraform.  
+This repository provisions a **secure and scalable NGINX web server** infrastructure on AWS using Terraform.
+
 It includes:
 - Automated deployment of EC2 instances in private subnets behind an Application Load Balancer (ALB)
 - Enforced HTTPS with ACM SSL certificates
@@ -31,8 +34,9 @@ It includes:
 - CI/CD pipeline via GitHub Actions for continuous provisioning
 - Automated server configuration through a custom **user data script**
 
-
 ## 🏗️ Architecture
+
+```
       ┌─────────────────────────────────────────┐
       │               AWS Cloud                 │
       │ ┌─────────────────────────────────────┐ │
@@ -45,13 +49,12 @@ It includes:
       │ │   Internet Gateway     NAT Gateway   │ │
       │ └─────────────────────────────────────┘ │
       └─────────────────────────────────────────┘
-
----
+```
 
 ## ☁️ Infrastructure Components
 
 | Component | Description |
-|------------|-------------|
+|-----------|-------------|
 | **VPC** | Custom Virtual Private Cloud with public/private subnets |
 | **ALB (Application Load Balancer)** | Routes HTTPS traffic to NGINX instances |
 | **Auto Scaling Group (ASG)** | Ensures high availability and elasticity |
@@ -62,8 +65,6 @@ It includes:
 | **S3 Backend (optional)** | Stores Terraform state remotely |
 | **CloudWatch** | Monitors logs and instance metrics |
 
----
-
 ## 🔐 Security Features
 
 - **HTTPS Enforcement:** Redirects HTTP to HTTPS using ALB listeners  
@@ -72,22 +73,19 @@ It includes:
 - **Auto Patching:** `user_data.sh` ensures automatic OS and package updates  
 - **Secure Key Management:** AWS credentials and SSH key pairs managed via GitHub Secrets  
 
----
-
 ## ⚙️ GitHub Actions CI/CD Workflow
 
-This project includes a robust **Terraform CI/CD pipeline** defined in `.github/workflows/terraform.yml`.  
+This project includes a robust **Terraform CI/CD pipeline** defined in `.github/workflows/terraform.yml`.
+
 It automates:
 
 | Stage | Description |
-|--------|--------------|
+|-------|-------------|
 | 🧩 **Terraform Check** | Lints and validates code using `terraform fmt` and `terraform validate` |
 | 🔎 **Static Security Scan** | Runs `tfsec` for security analysis |
 | 🧠 **Terraform Plan** | Generates and previews infrastructure changes for PRs or dispatch events |
 | 🚀 **Terraform Apply** | Deploys to AWS automatically upon merge to `main` or manual trigger |
 | 💥 **Terraform Destroy** | Tears down resources safely using manual workflow dispatch |
-
----
 
 ### 🔑 Secrets Required
 
@@ -95,19 +93,12 @@ It automates:
 - `AWS_SECRET_ACCESS_KEY`  
 - `AWS_KEY_PAIR_NAME`
 
----
-
 ### Example Trigger
 
 ```bash
 # Manual trigger (plan, apply, or destroy)
-Actions > Run workflow > Action: apply
-# 🌐 Secure Nginx Terraform Deployment
-
-This project automates the provisioning of a **secure, production-ready Nginx web server** using **Terraform** on AWS.  
-It integrates **AWS WAF**, **ACM SSL**, and **ALB** to ensure high availability, security, and scalability following DevOps best practices.
-
----
+# Actions > Run workflow > Action: apply
+```
 
 ## 🧰 Prerequisites
 
@@ -119,26 +110,33 @@ It integrates **AWS WAF**, **ACM SSL**, and **ALB** to ensure high availability,
   - `AWS_SECRET_ACCESS_KEY`  
   - `AWS_KEY_PAIR_NAME`
 
----
-
 ## 🚀 Setup & Deployment
 
 ### 1️⃣ Clone the Repository
+
 ```bash
 git clone https://github.com/Benjamin-Klenam-Akakpo/secure-nginx-terraform-deployment.git
 cd secure-nginx-terraform-deployment/terraform
+```
 
 ### 2️⃣ Initialize Terraform
+
+```bash
 terraform init
+```
 
 ### 3️⃣ Validate Configuration
+
+```bash
 terraform validate
+```
 
 ### 4️⃣ Plan and Deploy
+
+```bash
 terraform plan -out=tfplan
 terraform apply tfplan
-
-
+```
 
 ## 🧩 Variables
 
@@ -153,17 +151,13 @@ terraform apply tfplan
 
 > See **`variables.tf`** for the full list of configurable parameters.
 
----
-
 ## 📊 Outputs
 
 | Output              | Description                                   |
-|----------------------|-----------------------------------------------|
-| `load_balancer_url`  | Public endpoint of the deployed NGINX site    |
-| `waf_arn`            | ARN of the Web Application Firewall           |
-| `security_group_id`  | Security group associated with instances      |
-
----
+|---------------------|-----------------------------------------------|
+| `load_balancer_url` | Public endpoint of the deployed NGINX site    |
+| `waf_arn`           | ARN of the Web Application Firewall           |
+| `security_group_id` | Security group associated with instances      |
 
 ## 🪶 `user_data.sh` Highlights
 
@@ -173,15 +167,11 @@ terraform apply tfplan
 - Registers **health check endpoints**  
 - Configures **CloudWatch logging** for monitoring  
 
----
-
 ## 📈 Monitoring & Logging
 
 - **CloudWatch Metrics:** Tracks CPU, memory, and network performance  
 - **CloudWatch Logs:** Captures NGINX access and error logs for observability  
 - **GitHub Actions Summary:** Displays deployment results and ALB endpoints  
-
----
 
 ## 🔮 Future Improvements
 
@@ -189,8 +179,6 @@ terraform apply tfplan
 - Add **AWS Shield Advanced** for DDoS protection  
 - Implement **Blue/Green deployment** strategy via ALB target groups  
 - Extend **CI/CD** to include automated rollback on failed apply  
-
----
 
 ## 🪪 License
 
