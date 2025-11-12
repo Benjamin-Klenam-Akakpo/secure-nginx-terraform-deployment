@@ -47,7 +47,6 @@ It includes:
       │ └─────────────────────────────────────┘ │
       └─────────────────────────────────────────┘
 
-
 ---
 
 ## ☁️ Infrastructure Components
@@ -107,7 +106,7 @@ Actions > Run workflow > Action: apply
 
 ---
 
-### 🧰 Prerequisites
+🧰 Prerequisites
 
 Terraform ≥ 1.6.0
 AWS Account with IAM permissions for EC2, ALB, WAF, ACM, and VPC
@@ -119,7 +118,7 @@ AWS_KEY_PAIR_NAME
 
 ---
 
-### 🚀 Setup & Deployment
+🚀 Setup & Deployment
 
 1️⃣ Clone the Repository
 
@@ -139,9 +138,9 @@ terraform validate
 terraform plan -out=tfplan
 terraform apply tfplan
 
+---
 
-
-### 🧩 Variables
+🧩 Variables
 
 | Variable        | Description                              | Default                |
 | --------------- | ---------------------------------------- | ---------------------- |
@@ -153,7 +152,9 @@ terraform apply tfplan
 | `domain_name`   | Domain name for ACM SSL certificate      | `deploywithklenam.com` |
 (See variables.tf for full list.)
 
-### 📊 Outputs
+---
+
+📊 Outputs
 
 | Output              | Description                                |
 | ------------------- | ------------------------------------------ |
@@ -161,8 +162,9 @@ terraform apply tfplan
 | `waf_arn`           | ARN of the Web Application Firewall        |
 | `security_group_id` | Security group associated with instances   |
 
+---
 
-### 🪶 user_data.sh Highlights
+🪶 user_data.sh Highlights
 
 Updates system packages
 Installs and configures NGINX
@@ -170,26 +172,31 @@ Clones the website from GitHub
 Registers health check endpoints
 Configures CloudWatch logging for monitoring
 
-### 📈 Monitoring & Logging
+---
+
+📈 Monitoring & Logging
 
 CloudWatch Metrics: Tracks CPU, memory, and network performance
 CloudWatch Logs: Captures NGINX access and error logs for observability
 GitHub Actions Summary: Displays deployment results and load balancer URLs
 
-### 🔮 Future Improvements
+---
+
+🔮 Future Improvements
 
 Integrate Terraform Cloud for remote state and policy checks
 Add AWS Shield Advanced for DDoS protection
 Implement Blue/Green deployment strategy via ALB target groups
 Extend CI/CD to include automated rollback on failed apply
 
-### 🪪 License
+---
 
-This project is licensed under the MIT License — see the LICENSE
- file for details.
+🪪 License
+
+This project is licensed under the MIT License
 
  👨‍💻 Author
 
 Benjamin Klenam Akakpo
 DevOps Engineer | Cloud Infrastructure & Data Engineering Enthusiast
-GitHub Profile
+https://github.com/Benjamin-Klenam-Akakpo
