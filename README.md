@@ -1,7 +1,6 @@
 # secure-nginx-terraform-deployment
 ![Terraform Version](https://img.shields.io/badge/Terraform-v1.6.0-blue?logo=terraform)
-![AWS Region](https://img.shields.io/badge/AWS-us--west--2-orange?logo=amazon-aws)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Benjamin-Klenam-Akakpo/secure-nginx-terraform-deployment/terraform.yml?label=CI%2FCD%20Pipeline&logo=github)
+![AWS Region](https://img.shields.io/badge/AWS-us--west--2-orange?logo=amazon-aws) 
 ![Security Scan](https://img.shields.io/badge/tfsec-passing-brightgreen?logo=githubactions)
 
 
@@ -103,100 +102,96 @@ It automates:
 ```bash
 # Manual trigger (plan, apply, or destroy)
 Actions > Run workflow > Action: apply
+# 🌐 Secure Nginx Terraform Deployment
+
+This project automates the provisioning of a **secure, production-ready Nginx web server** using **Terraform** on AWS.  
+It integrates **AWS WAF**, **ACM SSL**, and **ALB** to ensure high availability, security, and scalability following DevOps best practices.
 
 ---
 
-🧰 Prerequisites
+## 🧰 Prerequisites
 
-Terraform ≥ 1.6.0
-AWS Account with IAM permissions for EC2, ALB, WAF, ACM, and VPC
-AWS CLI configured locally
-GitHub repository secrets set:
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_KEY_PAIR_NAME
+- **Terraform** ≥ v1.6.0  
+- **AWS Account** with IAM permissions for EC2, ALB, WAF, ACM, and VPC  
+- **AWS CLI** configured locally  
+- **GitHub repository secrets** set:
+  - `AWS_ACCESS_KEY_ID`  
+  - `AWS_SECRET_ACCESS_KEY`  
+  - `AWS_KEY_PAIR_NAME`
 
 ---
 
-🚀 Setup & Deployment
+## 🚀 Setup & Deployment
 
-1️⃣ Clone the Repository
-
+### 1️⃣ Clone the Repository
+```bash
 git clone https://github.com/Benjamin-Klenam-Akakpo/secure-nginx-terraform-deployment.git
 cd secure-nginx-terraform-deployment/terraform
 
-2️⃣ Initialize Terraform
-
+### 2️⃣ Initialize Terraform
 terraform init
 
-3️⃣ Validate Configuration
-
+### 3️⃣ Validate Configuration
 terraform validate
 
-4️⃣ Plan and Deploy
-
+### 4️⃣ Plan and Deploy
 terraform plan -out=tfplan
 terraform apply tfplan
 
----
 
-🧩 Variables
 
-| Variable        | Description                              | Default                |
-| --------------- | ---------------------------------------- | ---------------------- |
-| `aws_region`    | AWS region for resource deployment       | `us-west-2`            |
-| `environment`   | Environment name (e.g., dev, prod)       | `dev`                  |
-| `key_pair_name` | Existing AWS EC2 key pair for SSH access | `""`                   |
-| `vpc_cidr`      | CIDR block for VPC                       | `10.0.0.0/16`          |
-| `instance_type` | EC2 instance type                        | `t3.micro`             |
-| `domain_name`   | Domain name for ACM SSL certificate      | `deploywithklenam.com` |
-(See variables.tf for full list.)
+## 🧩 Variables
 
----
+| Variable         | Description                                       | Default                |
+|------------------|---------------------------------------------------|------------------------|
+| `aws_region`     | AWS region for resource deployment                | `us-west-2`            |
+| `environment`    | Environment name (e.g., dev, prod)                | `dev`                  |
+| `key_pair_name`  | Existing AWS EC2 key pair for SSH access          | `""`                   |
+| `vpc_cidr`       | CIDR block for VPC                                | `10.0.0.0/16`          |
+| `instance_type`  | EC2 instance type                                 | `t3.micro`             |
+| `domain_name`    | Domain name for ACM SSL certificate               | `deploywithklenam.com` |
 
-📊 Outputs
-
-| Output              | Description                                |
-| ------------------- | ------------------------------------------ |
-| `load_balancer_url` | Public endpoint of the deployed NGINX site |
-| `waf_arn`           | ARN of the Web Application Firewall        |
-| `security_group_id` | Security group associated with instances   |
+> See **`variables.tf`** for the full list of configurable parameters.
 
 ---
 
-🪶 user_data.sh Highlights
+## 📊 Outputs
 
-Updates system packages
-Installs and configures NGINX
-Clones the website from GitHub
-Registers health check endpoints
-Configures CloudWatch logging for monitoring
-
----
-
-📈 Monitoring & Logging
-
-CloudWatch Metrics: Tracks CPU, memory, and network performance
-CloudWatch Logs: Captures NGINX access and error logs for observability
-GitHub Actions Summary: Displays deployment results and load balancer URLs
+| Output              | Description                                   |
+|----------------------|-----------------------------------------------|
+| `load_balancer_url`  | Public endpoint of the deployed NGINX site    |
+| `waf_arn`            | ARN of the Web Application Firewall           |
+| `security_group_id`  | Security group associated with instances      |
 
 ---
 
-🔮 Future Improvements
+## 🪶 `user_data.sh` Highlights
 
-Integrate Terraform Cloud for remote state and policy checks
-Add AWS Shield Advanced for DDoS protection
-Implement Blue/Green deployment strategy via ALB target groups
-Extend CI/CD to include automated rollback on failed apply
+- Updates system packages  
+- Installs and configures **NGINX**  
+- Clones the website from **GitHub**  
+- Registers **health check endpoints**  
+- Configures **CloudWatch logging** for monitoring  
 
 ---
 
-🪪 License
+## 📈 Monitoring & Logging
 
-This project is licensed under the MIT License
+- **CloudWatch Metrics:** Tracks CPU, memory, and network performance  
+- **CloudWatch Logs:** Captures NGINX access and error logs for observability  
+- **GitHub Actions Summary:** Displays deployment results and ALB endpoints  
 
- 👨‍💻 Author
+---
 
-Benjamin Klenam Akakpo
-DevOps Engineer | Cloud Infrastructure & Data Engineering Enthusiast
-https://github.com/Benjamin-Klenam-Akakpo
+## 🔮 Future Improvements
+
+- Integrate **Terraform Cloud** for remote state and policy checks  
+- Add **AWS Shield Advanced** for DDoS protection  
+- Implement **Blue/Green deployment** strategy via ALB target groups  
+- Extend **CI/CD** to include automated rollback on failed apply  
+
+---
+
+## 🪪 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
